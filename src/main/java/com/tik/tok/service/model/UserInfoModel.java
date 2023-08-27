@@ -1,4 +1,4 @@
-package com.tik.tok.model;
+package com.tik.tok.service.model;
 
 
 import lombok.Data;
@@ -10,5 +10,7 @@ public class UserInfoModel {
     private Integer followers;
 
     private String userName;
+
+    private String img;
 
 }

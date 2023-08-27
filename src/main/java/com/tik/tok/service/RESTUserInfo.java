@@ -1,10 +1,10 @@
 package com.tik.tok.service;
 
-import com.tik.tok.model.UserInfoModel;
+import com.tik.tok.service.model.UserInfoModel;
 
 import java.io.IOException;
 
-public interface UserInfo {
+public interface RESTUserInfo {
 
     UserInfoModel getUserInfo(String userName) throws IOException;
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Turn</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}"/>
+</head>
+<body>
+<label for="userNameInput"> Input your userName</label>
+<input type="text" id="userNameInput" name="name" required minlength="4" maxlength="25" size="25"/>
+
+<div id="currentUserName"></div>
+<div id="userNameFollowers"></div>
+<div id="userNameSubscribers"></div>
+<img id="userNameImg">
+
+</body>
+<script type="text/javascript">
+
+    let userNameEntered = "";
+    document.getElementById("userNameInput").addEventListener('keypress', function (e) {
+        if (e.key === "Enter") {
+            userNameEntered = document.getElementById("userNameInput").value;
+            sendRequest(userNameEntered)
+        }
+    });
+
+    function sendRequest(userName) {
+        fetch('http://localhost:8070/find/user?userName=' + userName, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                response.json().then(json => {
+                    console.log(json);
+                    document.getElementById("currentUserName").innerHTML = "User: "+ json["userName"];
+                    document.getElementById("userNameSubscribers").innerHTML ="Subscribers:" + json["subscribers"];
+                    document.getElementById("userNameFollowers").innerHTML ="Followers: "+ json["followers"];
+                    document.getElementById("userNameImg").src = json["img"];
+                });
+            }
+        })
+    }
+</script>
+</html>

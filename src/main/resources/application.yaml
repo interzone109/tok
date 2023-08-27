@@ -3,3 +3,28 @@ server:
 
 tik:
   tok: "https://www.tiktok.com"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tiktok
+    username: postgres
+    password: 4444
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
+  web:
+    resources:
+      add-mappings: false
+  sql:
+    init:
+      mode: never
+      data-locations: classpath:sql/data.sql
+
+flyway:
+  url: jdbc:mysql://localhost:5432/tiktok
+  schemas: public
+  user: "postgres"
+  password: "4444"
